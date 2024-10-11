@@ -47,11 +47,9 @@ jobs:
       - name: Install XQuartz
         if: runner.os == 'macOS'
         run: |
-          wget https://dl.bintray.com/xquartz/downloads/XQuartz-2.7.11.dmg
-          sudo hdiutil attach XQuartz-2.7.11.dmg
-          sudo installer -package /Volumes/XQuartz-2.7.11/XQuartz.pkg -target /
-          sudo hdiutil detach /Volumes/XQuartz-2.7.11
-          rm XQuartz-2.7.11.dmg
+          wget https://github.com/XQuartz/XQuartz/releases/download/XQuartz-2.8.5/XQuartz-2.8.5.pkg
+          sudo installer -pkg XQuartz-2.8.5.pkg
+          rm XQuartz-2.8.5.pkg
           
       - name: Cache R packages
         if: runner.os != 'Windows'
@@ -69,6 +67,7 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
+          sudo apt update
           sudo apt install xvfb
           echo "{XVFB_RUN}={xvfb-run}" >> $GITHUB_ENV
       - name: Install dependencies
