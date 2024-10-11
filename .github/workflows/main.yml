@@ -64,7 +64,7 @@ jobs:
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
-          sudo apt install g++-11 xvfb
+          sudo apt install curl g++-11 xvfb
           echo "{XVFB_RUN}={xvfb-run}" >> $GITHUB_ENV
       - name: Install dependencies
         run: |
