@@ -7,8 +7,8 @@ Author: Aaron Robotham
 Maintainer: Aaron Robotham <aaron.robotham@uwa.edu.au>
 Description: Core package containing all the tools for simple and advanced source extraction. This is used to create inputs for 'ProFit', or for source detection, extraction and photometry in its own right.
 License: LGPL-3
-Depends: R (>= 3.1), magicaxis (>= 2.0.8), Rcpp (>= 1.0.2)
-Remotes: asgr/Rfits, asgr/Rwcs, asgr/ProFit, asgr/Highlander, asgr/ProPane
+Depends: R (>= 3.1), Rcpp (>= 1.0.2)
+Remotes: asgr/magicaxis, asgr/Rwcs, asgr/Rfits
 Imports: data.table, celestial (>= 1.4.1), foreach, matrixStats, doParallel
 Suggests: ProFit, knitr, rmarkdown, EBImage, imager, LaplacesDemon, Rfast, Rfast2, fastmatch, snow, doSNOW, bigmemory, mvtnorm, Rwcs, Highlander (>= 0.1.7), ProPane
 VignetteBuilder: knitr
