@@ -47,7 +47,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: any::rcmdcheck, remotes::install_github(c( "asgr/Rfits", "asgr/imager", "asgr/rwcs" ))
           needs: check
 
       # - name: Query dependencies
