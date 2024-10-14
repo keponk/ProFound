@@ -64,7 +64,7 @@ jobs:
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
-          sudo apt install curl g++-11 xvfb
+          sudo apt install curl g++-11 xvfb texlive-full
           echo "{XVFB_RUN}={xvfb-run}" >> $GITHUB_ENV
       - name: Install dependencies
         run: |
@@ -78,15 +78,15 @@ jobs:
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          $XVFB_RUN Rscript -e "Sys.setenv(GITHUB_PAT = '${{ secrets.GITHUB_TOKEN }}')"
           $XVFB_RUN Rscript -e "remotes::install_github('asgr/rwcs')"
           $XVFB_RUN Rscript -e "rcmdcheck::rcmdcheck(args = c('--no-manual', '--as-cran'), error_on = 'error', check_dir = 'check')"
         shell: bash
 
       - name: Upload check results
         if: failure()
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
