@@ -68,6 +68,7 @@ jobs:
           echo "{XVFB_RUN}={xvfb-run}" >> $GITHUB_ENV
       - name: Install dependencies
         run: |
+          Sys.setenv(GITHUB_PAT = "${{ secrets.GITHUB_TOKEN }}")
           remotes::install_github("asgr/Rfits")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
