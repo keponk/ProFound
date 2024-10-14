@@ -37,6 +37,13 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v2
 
+      - uses: teatimeguest/setup-texlive-action@v3
+        with:
+          packages: |
+            scheme-basic
+            hyperref
+            microtype
+
       - name: Query dependencies
         run: |
           install.packages('remotes')
@@ -64,7 +71,16 @@ jobs:
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
-          sudo apt install curl g++-11 xvfb texlive-full
+          sudo apt-get install -y \
+            curl \
+            g++-11 \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-xetex \
+            xvfb
           echo "{XVFB_RUN}={xvfb-run}" >> $GITHUB_ENV
       - name: Install dependencies
         run: |
@@ -72,7 +88,7 @@ jobs:
           remotes::install_github("asgr/Rfits")
           remotes::install_github("asgr/rwcs")
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("rcmdcheck")
+          remotes::install_cran(c("rcmdcheck", "images"))
         shell: Rscript {0}
 
       - name: Check
