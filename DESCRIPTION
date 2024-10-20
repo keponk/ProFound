@@ -12,6 +12,5 @@ Remotes: asgr/Rfits, asgr/Rwcs, asgr/ProPane, asgr/cmaeshpc, asgr/Highlander
 Imports: data.table, celestial (>= 1.4.1), foreach, matrixStats, doParallel
 Suggests: ProFit, knitr, rmarkdown, EBImage, imager, LaplacesDemon, Rfast, Rfast2, fastmatch, snow, doSNOW, bigmemory, mvtnorm, Rwcs, Highlander (>= 0.1.7), ProPane
 VignetteBuilder: knitr
-SystemRequirements: X11
 LinkingTo: Rcpp
 NeedsCompilation: yes
